@@ -5,12 +5,8 @@ const btnFav = document.getElementById('navFav');
 const pageHome = document.getElementById('homePage');
 const pageSearch = document.getElementById('searchPage');
 const pageFav = document.getElementById('favoritesPage');
-const API_BASE_URL = window.location.port === '3000'
-    ? ''
-    : `${window.location.protocol}//${window.location.hostname || 'localhost'}:3000`;
-
 function getApiUrl(path) {
-    return `${API_BASE_URL}${path}`;
+    return path;
 }
 
 async function fetchApiJson(path) {

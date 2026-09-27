@@ -3,7 +3,7 @@ const cors = require('cors');
 const https = require('https');
 const path = require('path');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -115,6 +115,10 @@ app.get('/api/cover/:mangaId/:fileName', (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-    console.log(`🚀 เซิร์ฟเวอร์มังงะรันแล้วที่ลิงก์นี้ -> http://localhost:${PORT}`);
-});
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`🚀 เซิร์ฟเวอร์มังงะรันแล้วที่ลิงก์นี้ -> http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
