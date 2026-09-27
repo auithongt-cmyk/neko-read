@@ -1,0 +1,812 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #fff8e9; 
+    color: #1a2332;            
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.main-content {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+    padding-bottom: 90px;     
+    flex-grow: 1;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    background-color: #fff8e9;      
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.logo-img {
+    height: 100px;
+    object-fit: contain;
+}
+
+.user-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.user-text {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.user-icon {
+    width: 50px;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 50%;
+    mix-blend-mode: multiply;       
+}
+
+
+.page-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.manga-section {
+    margin-bottom: 30px;
+}
+
+.manga-img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.section-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.section-heading {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+    margin-bottom: 10px;
+}
+
+.section-heading .section-title {
+    margin: 0;
+    padding-right: 68px;
+}
+
+.section-next-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.section-next-button img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.banner-section {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.banner-section {
+    width: 100%;
+    margin-bottom: 25px;
+    overflow: hidden; 
+}
+
+.banner-slider {
+    display: flex;
+    overflow-x: auto;          
+    scroll-snap-type: x mandatory; 
+    scroll-behavior: smooth;   
+    gap: 15px;
+    padding-bottom: 5px;
+    white-space: nowrap;        
+}
+
+.banner-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.banner-slide {
+    flex: 0 0 100%;            
+    scroll-snap-align: start;  
+    position: relative;
+    height: 450px;             
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.banner-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         
+    object-position: center;   
+}
+
+.banner-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8)); 
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.banner-placeholder {
+    font-size: 1rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+.manga-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.manga-card {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    border-radius: 18px;
+    background-color: #e7dcc8;
+}
+
+.manga-card.horizontal {
+    flex: 0 0 280px;
+    background-color: #232d3f;
+    display: flex;            
+    gap: 10px;
+}
+.manga-card.split-vertical {
+    flex: 0 0 130px;
+    background-color: #232d3f;
+    display: flex;
+    flex-direction: column;    
+}
+
+.manga-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.manga-scroll, .manga-scroll-wide {
+    display: flex;
+    overflow-x: auto;              
+    gap: 12px;
+    padding-bottom: 10px;
+}
+
+.manga-scroll-x {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+
+.manga-scroll::-webkit-scrollbar, 
+.manga-scroll-wide::-webkit-scrollbar,
+.manga-scroll-x::-webkit-scrollbar {
+    display: none;
+}
+
+
+.manga-placeholder-card {
+    grid-column: 1 / -1;
+    height: 150px;
+    background-color: #00796b;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.manga-placeholder-card-scroll {
+    flex: 0 0 120px;
+    height: 160px;
+    background-color: #00796b;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 10px;
+}
+
+.manga-placeholder-card-wide {
+    flex: 0 0 280px;
+    height: 100px;
+    background-color: #00796b;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+
+.search-bar-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #333333;
+    outline: none;
+    font-size: 0.9rem;
+    cursor: text;
+}
+
+.genre-dropdown {
+    max-width: 45%;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #333333;
+    outline: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.search-status {
+    min-height: 1.2em;
+    margin: 0 0 10px;
+    color: #526071;
+    font-size: 0.85rem;
+}
+
+.search-result-card {
+    min-width: 0;
+    width: 100%;
+}
+
+.search-result-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.search-result-title {
+    display: block;
+    margin-top: 6px;
+    overflow: hidden;
+    color: #1a2332;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.fav-tabs {
+    display: flex;
+    gap: 15px;
+    border-bottom: 2px solid #1a2332;
+    margin-bottom: 20px;
+}
+
+.fav-tab-btn {
+    background: none;
+    border: none;
+    color: #1a2332;
+    padding: 8px 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+}
+
+
+.fav-tab-btn.active {
+    color: #8892b0;                 
+}
+
+.fav-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;     
+}
+
+.fav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.library-empty-state {
+    color: #526071;
+}
+
+.library-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(26, 35, 50, 0.18);
+}
+
+.library-card-open {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 14px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.library-card-open img {
+    width: 64px;
+    height: 92px;
+    flex: 0 0 auto;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.library-card-title {
+    overflow: hidden;
+    font-weight: 700;
+    text-overflow: ellipsis;
+}
+
+.library-card-action,
+.modal-follow-button {
+    min-height: 40px;
+    padding: 8px 14px;
+    border: 1px solid #536273;
+    border-radius: 4px;
+    background: #263444;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff8e9;      
+    display: flex;
+    justify-content: space-around;
+    padding: 2px 0;             
+    border-top: 1px solid #1a2332;  
+    z-index: 1000;
+}
+
+
+.nav-item {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #8892b0;
+    gap: 0.5px;                   
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #1a2332;                 
+    gap: 0.5px;
+}
+
+.nav-icon {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.nav-text {
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+.nav-item.active {
+    color: #8892b0;                 
+}
+
+.loading {
+    text-align: center;
+    color: #8892b0;
+    padding: 20px;
+    font-size: 0.9rem;
+}
+
+
+.netflix-rank-card {
+    display: flex;
+    align-items: flex-end;    
+    position: relative;
+    flex: 0 0 160px;          
+    height: 140px;            
+}
+
+.netflix-number {
+    font-size: 7rem;          
+    font-weight: 900;
+    color: #1a2332;           
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8); 
+    line-height: 0.8;
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+}
+
+.netflix-cover {
+    width: 90px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 8px;       
+    z-index: 2;               
+    margin-left: auto;        
+}
+
+
+.rank-loop-card {
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    flex: 0 0 220px;          
+    height: 230px;            
+}
+
+.rank-loop-cover {
+    width: 150px;             
+    height: 220px;            
+    object-fit: cover;
+    border-radius: 14px;      
+    z-index: 1;               
+    margin-left: 0;           
+}
+
+.rank-loop-number {
+    font-size: 8.5rem;       
+    font-weight: 900;
+    color: rgba(26, 35, 50, 0.95);
+    -webkit-text-stroke: 2.5px rgba(255, 255, 255, 0.95); 
+    line-height: 1;
+    z-index: 2;               
+    position: absolute;
+    right: 5px;              
+    bottom: -5px;             
+}
+
+
+.new-release-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    gap: 8px;                 
+    width: 100%;
+}
+
+.new-release-cover {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.new-release-card {
+    flex: 0 0 160px;
+    width: 160px;
+    height: 240px;
+    cursor: pointer;
+}
+
+.trend-horizontal-card {
+    display: flex;
+    flex: 0 0 380px;
+    height: 220px;
+    gap: 10px;
+    padding: 8px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #1a2332;
+    cursor: pointer;
+    white-space: normal;
+}
+
+.trend-cover {
+    flex: 0 0 145px;
+    width: 145px;
+    height: 204px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.trend-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    height: 204px;
+    overflow: hidden;
+}
+
+.coming-soon-card {
+    flex: 0 0 170px;
+    width: 170px;
+    height: 250px;
+    cursor: pointer;
+}
+
+.coming-soon-cover {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    object-fit: cover;
+}
+
+#weeklyFeaturedScroll::-webkit-scrollbar {
+    display: none;
+}
+#newReleasesScroll::-webkit-scrollbar {
+    display: none;
+}
+#trendingScroll::-webkit-scrollbar {
+    display: none;
+}
+#comingSoonScroll::-webkit-scrollbar {
+    display: none;
+}
+
+
+#trendingSearchScroll {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 16px;
+    width: 100% !important;
+    background: none !important;
+}
+
+.manga-card,
+.rank-loop-card,
+.new-release-card,
+.trend-horizontal-card,
+.coming-soon-card,
+.search-result-card {
+    cursor: pointer;
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+.manga-modal[hidden] {
+    display: none;
+}
+
+.manga-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 16px;
+    background: rgba(12, 13, 16, 0.78);
+    color: #f4f4f5;
+}
+
+.manga-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: min(100%, 760px);
+    max-height: calc(100dvh - 32px);
+    padding: 18px 24px 26px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    background: #202126;
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.42);
+}
+
+.manga-modal-content.is-banner-detail {
+    width: min(100%, 860px);
+}
+
+.manga-modal-content.is-banner-detail .manga-modal-cover {
+    width: min(100%, 600px);
+    height: min(680px, 68vh);
+}
+
+.manga-modal-header {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 32px;
+    margin-bottom: 8px;
+    color: #d4d4d8;
+}
+
+.manga-modal-close {
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: none;
+    color: inherit;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.manga-modal-cover {
+    display: block;
+    width: min(100%, 440px);
+    height: min(560px, 58vh);
+    margin: 0;
+    align-self: center;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.manga-modal-details {
+    min-width: 0;
+}
+
+.modal-follow-button {
+    margin: 2px 0 4px;
+    background: #465a46;
+    border-color: #708670;
+}
+
+.manga-modal-details h2 {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.manga-modal-alt-title,
+.manga-modal-meta {
+    margin: 0 0 12px;
+    color: #c4c4c9;
+}
+
+.manga-modal-description {
+    margin: 18px 0;
+    color: #e4e4e7;
+    line-height: 1.65;
+    white-space: pre-line;
+}
+
+.manga-modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.manga-modal-tag {
+    padding: 7px 10px;
+    border: 1px solid #45454d;
+    border-radius: 4px;
+    color: #e4e4e7;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+    .manga-modal-content {
+        width: min(100%, 520px);
+        gap: 12px;
+        padding: 12px 16px 18px;
+    }
+
+    .manga-modal-cover {
+        width: min(100%, 400px);
+        height: min(500px, 50vh);
+    }
+
+    .manga-modal-content.is-banner-detail .manga-modal-cover {
+        width: min(100%, 440px);
+        height: min(540px, 55vh);
+    }
+
+    .manga-modal-details h2 {
+        font-size: 1.15rem;
+    }
+
+    .manga-modal-description {
+        margin: 12px 0;
+        font-size: 0.9rem;
+    }
+
+    .library-card {
+        gap: 8px;
+    }
+
+    .library-card-open {
+        gap: 10px;
+    }
+
+    .library-card-action {
+        padding: 7px 9px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 600px) {
+    #trendingSearchScroll {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px;
+    }
+}

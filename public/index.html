@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEKOread</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <img src="logo.png" alt="MangaFIN Logo" class="logo-img">
+        <div class="user-container">
+            <span class="user-text">บัญชี</span>
+            <img src="icon-user.png" alt="User Profile" class="user-icon">
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div id="homePage" class="page-section">
+            <section class="banner-section">
+                <div class="banner-slider" id="bannerSlider"></div>
+            <button onclick="document.getElementById('bannerSlider').scrollBy({left: -300, behavior: 'smooth'})" style="
+            position: absolute; 
+            left: 10px; top: 50%; 
+            transform: translateY(-50%); 
+            z-index: 100; background: none; 
+            border: none; 
+            cursor: pointer;">
+                
+                <img src="left.png" alt="ซ้าย" style="width: 40px; height: 40px; object-fit: contain;">
+            </button>
+        
+            <button onclick="document.getElementById('bannerSlider').scrollBy({left: 300, behavior: 'smooth'})" style="
+            position: absolute; 
+            right: 10px; top: 50%; 
+            transform: translateY(-50%); 
+            z-index: 100; background: none; 
+            border: none; 
+            cursor: pointer;">
+                
+                <img src="right.png" alt="ขวา" style="width: 40px; height: 40px; object-fit: contain;">
+            </button>
+            </section>
+
+
+            <section class="manga-section">
+                <h2 class="section-title">พิเศษสำหรับคุณ</h2>
+                <div class="manga-grid" id="specialGrid"></div>
+            </section>
+
+                        
+            <section class="manga-section">
+                <div class="section-heading">
+                    <h2 class="section-title">ฮอตประจำสัปดาห์</h2>
+                    <button id="scrollWeeklyNext" class="section-next-button" aria-label="เลื่อนเรื่องเด่นประจำสัปดาห์">
+                        <img src="button-right.png" alt="">
+                    </button>
+                </div>
+                <div class="manga-scroll-x" id="weeklyFeaturedScroll" style="display: 
+                flex; overflow-x: auto; white-space: nowrap; flex-wrap: nowrap; 
+                gap: 15px; width: 100%;"></div>
+            </section>
+
+
+            <section class="manga-section">
+            <div class="section-heading">
+                <h2 class="section-title">เรื่องใหม่สัปดาห์นี้</h2>
+                <button id="scrollNewNext" class="section-next-button" aria-label="เลื่อนเรื่องใหม่สัปดาห์นี้">
+                    <img src="button-right.png" alt="">
+                </button>
+            </div>
+            <div class="manga-scroll-x" id="newReleasesScroll" style="display: flex; overflow-x: 
+            auto; white-space: nowrap; flex-wrap: nowrap; gap: 15px; width: 100%;"></div>
+        </section>
+
+            
+        <section class="manga-section">
+            <div class="section-heading">
+                <h2 class="section-title">มาแรงฮิตติดเทรนด์</h2>
+                <button id="scrollTrendNext" class="section-next-button" aria-label="เลื่อนเรื่องมาแรง">
+                    <img src="button-right.png" alt="">
+                </button>
+            </div>
+            <div class="manga-scroll-x" id="trendingScroll" style="display: flex; overflow-x: auto; 
+            white-space: nowrap; flex-wrap: nowrap; gap: 15px; width: 100%;"></div>
+        </section>
+
+       
+        <section class="manga-section">
+            <div class="section-heading">
+                <h2 class="section-title">เร็ว ๆ นี้พบกับ</h2>
+                <button id="scrollComingNext" class="section-next-button" aria-label="เลื่อนเรื่องเร็ว ๆ นี้">
+                    <img src="button-right.png" alt="">
+                </button>
+            </div>
+            <div class="manga-scroll-x" id="comingSoonScroll" style="display: flex; overflow-x: auto; white-space: nowrap; flex-wrap: nowrap; gap: 15px; width: 100%;"></div>
+        </section>
+        </div>
+
+        
+        <div id="searchPage" class="page-section hidden">
+            <h2 class="page-title">ค้นหา</h2>
+            <div class="search-bar-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="หาเรื่องน่าอ่านได้ที่นี่">
+                <select id="genreSelect" class="genre-dropdown">
+                    <option value="">ประเภท</option>
+                </select>
+            </div>
+
+            <section class="manga-section">
+                <div class="section-heading">
+                    <h2 class="section-title" id="searchResultsTitle">มังงะยอดนิยม</h2>
+                </div>
+                <p id="searchStatus" class="search-status" role="status" aria-live="polite"></p>
+                <div class="manga-search-grid" id="trendingSearchScroll">
+                </div>
+            </section>
+        </div>
+
+        
+        <div id="favoritesPage" class="page-section hidden">
+            <h2 class="page-title">เว็บตูนของฉัน</h2>
+            <div class="fav-tabs">
+                <button class="fav-tab-btn active" type="button" data-library-tab="history" 
+                aria-pressed="true">เมื่อเร็วๆ นี้</button>
+                <button class="fav-tab-btn" type="button" data-library-tab="following" 
+                aria-pressed="false">รายการที่ติดตาม</button>
+            </div>
+
+            <div class="fav-list" id="favListContainer">
+                <div class="loading">ยังไม่มีมังงะในรายการโปรด...</div>
+            </div>
+        </div>
+
+        
+        <div id="mangaDetailModal" class="modal hidden">
+            <div class="modal-content">
+                <button class="modal-close-btn"> Back </button>
+                <div class="modal-body" id="modalBody">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    
+    <nav class="bottom-nav">
+        <button class="nav-item active" id="navHome">
+            <img src="icon-home.png" alt="หน้าแรก" class="nav-icon">
+            <span class="nav-text">หน้าแรก</span>
+        </button>
+        <button class="nav-item" id="navSearch">
+            <img src="icon-search.png" alt="ค้นหา" class="nav-icon">
+            <span class="nav-text">ค้นหา</span>
+        </button>
+        <button class="nav-item" id="navFav">
+            <img src="icon-fav.png" alt="รายการโปรด" class="nav-icon">
+            <span class="nav-text">รายการโปรด</span>
+        </button>
+    </nav>
+
+    <div class="manga-modal" id="mangaModal" role="dialog" aria-modal="true" aria-label="รายละเอียดมังงะ" hidden>
+        <section class="manga-modal-content">
+            <div class="manga-modal-header">
+                <button class="manga-modal-close" id="mangaModalClose" type="button" aria-label="ปิดหน้าต่าง">&times;</button>
+            </div>
+            <img id="modalCover" class="manga-modal-cover" src="" alt="ปกมังงะ">
+            <div class="manga-modal-details">
+                <h2 id="modalTitle"></h2>
+                <p id="modalAltTitle" class="manga-modal-alt-title"></p>
+                <p id="modalMeta" class="manga-modal-meta"></p>
+                <button id="modalFollowButton" class="modal-follow-button" type="button">ติดตาม</button>
+                <p id="modalDescription" class="manga-modal-description"></p>
+                <div id="modalTags" class="manga-modal-tags" aria-label="ประเภทมังงะ"></div>
+            </div>
+        </section>
+    </div>
+    <script src="dashboard.js"></script>
+
+</body>
+</html>
